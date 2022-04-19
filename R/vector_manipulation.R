@@ -52,3 +52,100 @@ shift_vec <- function(x, by = 1L, rotate = FALSE) {
   x[ind]
 }
 
+#' Transform numeric vector to vector of strings
+#' 
+#' The following functions transform numbers to strings:
+#' - `format_abs()`: formatted as absolute values (without decimal places)
+#' - `format_rel()`: formatted as relative values (with decimal places)
+#' 
+#' This functions can be used to create LaTeX text or normal text.
+#' For LaTeX text the minus symbol has some extra LaTeX formatting commands.
+#' @param x A numerical vector.
+#' @param signed A logical flag, defining if positive numbers should also have
+#'   a leading signature sign.
+#' @param latex_minus A logical value. If set to `TRUE`, then possible minus
+#'   signs are replace by a special LaTeX command. If the resulting texts
+#'   are compiled by a LaTeX compile, then the resulting text contains
+#'   minus signs where no line break is possible between the minus sign and
+#'   the following number. For this, the preamble of the surrounding LaTeX
+#'   document must contain the following line of code:
+#'   `\\usepackage[shortcuts]{extdash}`
+#' @param ... Various other arguments passed into the [format()] function.
+#'   These arguments can be used in order to change the behavior
+#'   of `format_abs()`, `format_rel()`, etc. 
+#' @rdname format_number
+#' @export
+format_abs <- function(x, signed = FALSE, latex_minus = FALSE, ...) {
+  lapply(
+    abs(x),
+    function(val) {
+      do.call(
+        format,
+        args = utils::modifyList(
+          list(
+            x = round(x),
+            nsmall = 0,
+            big.mark = ".",
+            decimal.mark = ",",
+            scientific = FALSE
+          ),
+          list(...)
+        )
+      )   
+    }
+  ) %>%
+    unlist %>%
+    paste0(
+      ifelse(
+        x >=0,
+        if (isTRUE(signed)) "+" else "",
+        if (isTRUE(latex_minus)) "\\=/" else "-"
+      ),
+      .
+    )
+}
+
+#' @param nsmall A positive integer, defining the minimum number of displayed
+#'   decimal places
+#' @param nsmall_max A positive integer, defining the maximum number of displayed
+#'   decimal places
+#' @rdname format_number
+#' @export
+format_rel <- function(x, signed = FALSE, latex_minus = FALSE, nsmall = 1, nsmall_max = 2, ...) {
+  lapply(
+    {
+      y <- round(abs(x)*10^nsmall)/10^nsmall
+      ind <- which(y == 0)
+      if (length(ind) > 0)
+        y[ind] <- round(abs(x[ind])*10^nsmall_max)/10^nsmall_max
+      y
+    },
+    function(val) {
+      do.call(
+        format,
+        args = utils::modifyList(
+          list(
+            x = val,
+            nsmall = nsmall,
+            digits = 1,
+            big.mark = ".",
+            decimal.mark = ",",
+            trim = TRUE,
+            scientific = FALSE
+          ),
+          list(...)
+        )
+      )
+    }
+  ) %>%
+    unlist %>%
+    paste0(
+      ifelse(
+        x >=0,
+        if (isTRUE(signed)) "+" else "",
+        if (isTRUE(latex_minus)) "\\=/" else "-"
+      ),
+      .
+    )
+}
+

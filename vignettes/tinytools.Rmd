@@ -34,6 +34,11 @@ tlsminicran::install_pkgs("tinytools")
 - `stringify()`: Turn a vector into a single string. Useful for printing
   vector data in error or warning messages messages.
 - `shift_vec()`: Shift the entries of a vector to the left or to the right.
+- `format_abs()`: Turn a numeric vector into a character vector
+  formatted as absolute numbers. Useful for printing numerical data in `rmd`
+  or `rnw`-reports.
+- `format_rel()`: Same as `format_abs()`, but for printing decimal numbers with
+  a specific number of digits after the decimal mark.
 
 ## Date manipulation
 
