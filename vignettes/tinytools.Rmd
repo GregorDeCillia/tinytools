@@ -1,0 +1,101 @@
+---
+title: "tinytools"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{tinytools}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(tinytools)
+```
+
+This package contains a set of various small general purpose
+functions that may be helpful for your daily R coding problems.
+
+# Installation
+
+```{r eval = FALSE}
+tlsminicran::install_pkgs("tinytools")
+```
+
+# Contained functions
+
+## Vector manipulation
+
+- `stringify()`: Turn a vector into a single string. Useful for printing
+  vector data in error or warning messages messages.
+- `shift_vec()`: Shift the entries of a vector to the left or to the right.
+
+## Date manipulation
+
+- `calc_date()`: Calculate a vector holding date objects from a day, month and
+  year number.
+- `calc_difftime_days()`: Calculate a diff vector holding the number of days
+  between two vectors with date objects as entries.
+- `calc_difftime_years()`: Calculate the diff vector holding the number of
+  years (also including fractional years) between two vectors with date objects
+  as entries. This function also takes leap years into account and can be
+  used for calculating the age of a person. Only for persons born on
+  the 29th of february there is an exception, and their birth is mapped to the
+  1st of march in order to be able to compute their age.
+- `is_leap_year()`: Returns a logical answer to the question if a specific
+  year is a leap year.
+- `date_2_year()`: Extracts a numeric vector holding year numbers from a 
+  vector holding date objects.
+
+## Calculate difference measures
+
+- `create_d_vars()`: Calculate absolute and relative difference vectors for
+  one or multiple data.frame variables. E.g. if we have
+  timevariable like a `year` a measurement variable like
+  the population count `n_pop`. Then function `create_d_vars()` can be
+  used in order to calculate the following variables:
+  - `d_pop`: Holding the absolute yearly growth of the population `n_pop`.
+  - `da_pop`: Holding the relative yearly growth of the population `n_pop`
+- `create_d_vars_all()`: Like `create_d_vars()`, but using all columns except
+  of specific set, defined by the user.
+
+## Enhanced `lapply()` and `sapply()`
+
+- `lappli()`: Same as `lapply()`, but also passing the variables `.i` and `.n`
+  holding the item index and the item name to the given function
+  `function(x, ..., .i, .n) {...}`. 
+- `sappli()`: Same as `sapply()`, but also passing the variables `.i` and `.n`
+  holding the item index and the item name to the given function
+  `function(x, ..., .i, .n) {...}`.
+
+## Advanced R coding
+
+- `restrict_fn_env()`: Restrict the environment of a function. This
+  is very important, when doing functional progamming, since the returned 
+  functions contain the entire environment ancestry tree,
+  which may cause memory issues.
+- `eval_closure()`: A wrapper for `restrict_fn_env()`, which allows you to
+  evaluate an expression inside of a closure, which has the optimal scope.
+  This is important to avoid memory leaks when working with closures.
+- `init_text_builder()`: Initialize a `text_builder`. This is a tool for
+  incrementally adding text blocks. One use case can be creating large LaTeX
+  code snippets in R.
+- `set_fn_defaults()`: Set the defaults for a given function. Can be useful
+  for customizing various functions.
+- `get_defaults()`: Return all function arguments including their default
+  values for a given function.
+- `composerr()`: Create meaningful error messages by incrementally adding
+  error message parts to an existing error handler.
+
+## Minor console tools
+
+- `ttable()`: Same as `table()`, but setting `useNA = "always"`.
+- `parse_copied_range()`: With this function you can parse a pasted range
+  (Excel, HTML etc.) into a data.frame. This function is useful when you want
+  to quickly access some structured data without being bothered by file
+  access code.

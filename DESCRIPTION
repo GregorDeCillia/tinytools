@@ -1,0 +1,40 @@
+Package: tinytools
+Type: Package
+Title: A Set Of Useful Tools For R Coding
+Version: 1.0.0
+Authors@R: c(person("Adrian", "Maldet", email = "adrian.maldet@tirol.gv.at", role = c("aut", "cre")))
+Maintainers@R: c(person("Adrian", "Maldet", email = "adrian.maldet@tirol.gv.at", role = c("aut", "cre")))
+Description: 
+    This lightweight R package contains a set of various small general purpous
+    functions that may be helpful for your daily R coding problems.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    utils (>= 4.0.3),
+    magrittr (>= 2.0.1),
+    dplyr (>= 1.0.6),
+    plyr (>= 1.8.6),
+    rlang (>= 0.4.11)
+Suggests: 
+    testthat (>= 3.0.0),
+    roxygen2 (>= 7.1.1),
+    knitr,
+    rmarkdown
+Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+VignetteBuilder: knitr
+Collate: 
+    'import.R'
+    'closure.R'
+    'composerr.R'
+    'console_tools.R'
+    'vector_manipulation.R'
+    'create_d_vars.R'
+    'date_manipulation.R'
+    'lappli.R'
+    'set_defaults.R'
+    'text_builder.R'
+Depends: 
+    R (>= 2.10)
