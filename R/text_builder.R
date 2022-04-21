@@ -1,4 +1,4 @@
-#' @include closure.R composerr.R
+#' @include function_manipulation.R composerr.R
 NULL
 
 #' Init a `text_builder` object, used for incrementally adding text parts

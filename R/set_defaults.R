@@ -1,4 +1,4 @@
-#' @include import.R closure.R
+#' @include import.R function_manipulation.R
 NULL
 
 #' Overwrite the default values of a given function

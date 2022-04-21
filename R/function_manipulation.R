@@ -68,3 +68,40 @@ eval_closure <- function(
     envir = new_env
   )
 }
+
+#' List all passed in function arguments
+#' 
+#' This functions returns a named list holding the argument values of the
+#' current function call.
+#' This includes:
+#'   - arguments assigned by name (e.g. `foo(x = 1)`)
+#'   - arguments assigned by position (e.g. `foo(1)`)
+#'   - arguments for which the default value was overwritten (e.g. `foo(x = 1)` with `foo <- function(x = 99)`)
+#'   - arguments for which the default value was used (e.g. `foo()` with `foo <- function(x = 99)`
+#'   - named and unnamed arguments inside of a three dots elipsis
+#' @param n The number ob frames to go back. The default value `n = 0L` means,
+#'   that the given arguments of current function should be returend.
+#' @return A named list holding the values of all call arguments
+#' @export
+get_call_args <- function(n = 0L) {
+  plyr::defaults(
+    # all passed in arguments from the call
+    as.list(match.call(
+      definition = sys.function(sys.parent(n + 1L)),
+      call = sys.call(sys.parent(1L + n)),
+      envir = parent.frame(2L + n)
+    )) %>%
+      {
+        .[2:length(.)]
+      },
+    # possible defaults values of the function
+    rlang::fn_fmls(fn = rlang::caller_fn(n = n + 1L)) %>%
+      as.list %>%
+      {
+        .[names(.) != "..."]
+      } %>%
+      {
+        .[lapply(., rlang::is_missing) %>% unlist %>% `!`]
+      }
+  )
+}

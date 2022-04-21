@@ -1,4 +1,4 @@
-#' @include closure.R
+#' @include function_manipulation.R
 NULL
 
 #' Compose error handlers (concatenate error messages)
