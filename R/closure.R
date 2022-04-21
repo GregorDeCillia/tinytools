@@ -7,7 +7,7 @@ NULL
 #' environment tree (including the entire ancestry) is kept in memory,
 #' but with `restrict_fn_env()` you get a function that has only
 #' a copies of all needed variables and the scope ancestry holds only the
-#' necessary environments (loaded packages when calling `restrict_fn_env()`).
+#' global environment.
 #' @param fn A function whose parent scope should be restricted to the
 #'   set of variables given in `vars` and the loaded packages.
 #' @param vars An optional character vector holding the names of the variables
@@ -18,7 +18,7 @@ NULL
 #'   in `vars`.
 #' @export
 restrict_fn_env <- function(fn, vars = NULL, lookup_env = environment(fn)) {
-  new_env <- new.env(parent = parent.env(.GlobalEnv))
+  new_env <- new.env(parent = .GlobalEnv)
   for(v in vars) {
     assign(
       v,
@@ -43,7 +43,7 @@ eval_closure <- function(
   vars = NULL,
   lookup_env = parent.frame()
 ) {
-  new_env <- new.env(parent = parent.env(.GlobalEnv))
+  new_env <- new.env(parent = .GlobalEnv)
   for(v in vars) {
     assign(
       v,
