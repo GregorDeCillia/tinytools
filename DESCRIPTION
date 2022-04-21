@@ -1,7 +1,7 @@
 Package: tinytools
 Type: Package
 Title: A Set Of Useful Tools For R Coding
-Version: 1.2.0
+Version: 1.3.0
 Authors@R: c(person("Adrian", "Maldet", email = "adrian.maldet@tirol.gv.at", role = c("aut", "cre")))
 Maintainers@R: c(person("Adrian", "Maldet", email = "adrian.maldet@tirol.gv.at", role = c("aut", "cre")))
 Description: 
@@ -34,6 +34,7 @@ Collate:
     'create_d_vars.R'
     'date_manipulation.R'
     'lappli.R'
+    'list_manipulation.R'
     'set_defaults.R'
     'text_builder.R'
 Depends: 

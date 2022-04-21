@@ -69,7 +69,7 @@ tlsminicran::install_pkgs("tinytools")
 - `create_d_vars_all()`: Like `create_d_vars()`, but using all columns except
   of specific set, defined by the user.
 
-## Enhanced `lapply()` and `sapply()`
+## List manipulation
 
 - `lappli()`: Same as `lapply()`, but also passing the variables `.i` and `.n`
   holding the item index and the item name to the given function
@@ -77,6 +77,8 @@ tlsminicran::install_pkgs("tinytools")
 - `sappli()`: Same as `sapply()`, but also passing the variables `.i` and `.n`
   holding the item index and the item name to the given function
   `function(x, ..., .i, .n) {...}`.
+- `add_list_items()`: A function that adds new list entries to a given list
+  object.
 
 ## Advanced R coding
 
