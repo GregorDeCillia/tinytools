@@ -69,7 +69,13 @@ composerr <- function(
     function(msg = NULL) {
       paste(
         c(
-          paste(c(text_1, msg), collapse = sep_1),
+          paste(
+            c(
+              text_1,
+              paste(msg, collapse = "")
+            ),
+            collapse = sep_1
+          ),
           text_2
         ),
         collapse = sep_2
