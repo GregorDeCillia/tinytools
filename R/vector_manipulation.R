@@ -4,7 +4,8 @@ NULL
 #' Stringify vector
 #'
 #' @param x A vector
-#' @param quote A logical. If set to `TRUE`, then each entry of `x` is quoted with `'`.
+#' @param str_quote A string, holding  the symbol which should be used for quoting
+#'   every entry of `x`. Default is `'` which gives the result `'entry1'`.
 #' @param str_collapse A string, used for separating each vector entry.
 #' @param str_before A string placed before each vector entry.
 #' @param str_after A string placed after each vector entry.
@@ -15,12 +16,12 @@ NULL
 stringify <- function(
   x,
   str_collapse = ", ",
-  quote = TRUE,
+  str_quote = '"',
   str_before = "",
   str_after = "",
   new_line = FALSE
 ) {
-  (if (isTRUE(quote)) paste0("'", x, "'") else x) %>%
+  (if (!is.null(str_quote)) paste0(str_quote, x, str_quote) else x) %>%
     paste0(str_before, ., str_after) %>%
     paste(collapse = str_collapse) %>%
     {

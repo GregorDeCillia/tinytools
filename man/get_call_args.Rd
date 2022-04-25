@@ -8,7 +8,7 @@ get_call_args(n = 0L)
 }
 \arguments{
 \item{n}{The number ob frames to go back. The default value \code{n = 0L} means,
-that the given arguments of current function should be returend.}
+that the given arguments of current function should be returned.}
 }
 \value{
 A named list holding the values of all call arguments
