@@ -1,4 +1,4 @@
-#' @include import.R composerr.R
+#' @include import.R
 NULL
 
 #' Parse a copied range (possibly Excel) to a data.frame
@@ -23,8 +23,7 @@ parse_copied_range <- function(x, col_names = NULL, num_cols = NULL, big_mark = 
   err_h <- composerr("Fehler waehrend des Aufrufs von 'parse_copied_range()'")
   if (!is.character(x) || length(x) != 1)
     err_h("Argument 'x' muss ein string sein.")
-  x <- strsplit(x, row_sep)[[1]] %>%
-    strsplit(col_sep)
+  x <- strsplit(strsplit(x, row_sep)[[1]], col_sep)
   x <- lapply(seq_len(length(x[[1]])), function(i) {
     unlist(lapply(x, function(y) y[i]))
   })
@@ -35,7 +34,7 @@ parse_copied_range <- function(x, col_names = NULL, num_cols = NULL, big_mark = 
   if (is.logical(num_cols))
     num_cols <- which(num_cols)
   if (length(x) != length(col_names))
-    paste(
+    err_h(paste(
       sprintf(
         "Die Spaltenanzahl der kopierte Range (%d) in Argument 'x'",
         length(x)
@@ -44,8 +43,7 @@ parse_copied_range <- function(x, col_names = NULL, num_cols = NULL, big_mark = 
         "passt nicht mit der Anzahl der Spalten (%d) in Argument 'col_names' zusammen.",
         length(col_names)
       )
-    ) %>%
-    err_h
+    ))
   if (!is.numeric(num_cols) || any(is.na(num_cols)) ||
       any(!num_cols %in% seq_len(length(x))))
     err_h("Argument 'num_cols' muss ein Vektor sein, der Spalten-Ids beinhaltet.")
@@ -58,7 +56,12 @@ parse_copied_range <- function(x, col_names = NULL, num_cols = NULL, big_mark = 
   names(x) <- col_names
   x[num_cols] <- lapply(
     x[num_cols],
-    function(y) y %>% gsub(sprintf("[%s]", big_mark), "", .) %>% gsub(sprintf("[%s]", dec_mark), ".", .) %>% as.numeric
+    function(y)
+      as.numeric(gsub(
+        sprintf("[%s]", dec_mark),
+        ".",
+        gsub(sprintf("[%s]", big_mark), "", y)
+      ))
   )
   data.frame(x)
 }

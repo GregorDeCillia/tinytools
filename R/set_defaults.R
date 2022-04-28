@@ -1,17 +1,20 @@
-#' @include import.R function_manipulation.R
+#' @include import.R
 NULL
 
 #' Overwrite the default values of a given function
 #' 
 #' This functions takes a function and modifies its default values.
+#' TODO: FIX **ERROR**, that calling `fn_new(1)` does not work,
+#' but `fn_new(x = 1)` does. This means, that piping does not
+#' work any more, since it uses unnamed caller args.
 #' @param fn The function for which the defaults should be set.
 #' @param ... Various named functions arguments, which should be set as default
 #' @return A new function, with overwritten defaults
 #' @export
 set_fn_defaults <- function(fn, ...) {
-  defaults <- plyr::compact(list(...))
-  fn_new <- restrict_fn_env(
-    vars = "defaults",
+defaults <- plyr::compact(list(...))
+  fn_new <- funky::restrict_fn_env(
+    vars = c("defaults", "fn"),
     fn = function(...) {
       do.call(
         fn,

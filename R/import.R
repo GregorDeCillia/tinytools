@@ -1,4 +1,4 @@
-#' @import magrittr dplyr 
+#' @import magrittr dplyr  composerr
 #' @importFrom rlang sym :=
 NULL
 

@@ -1,4 +1,4 @@
-#' @include vector_manipulation.R composerr.R
+#' @include vector_manipulation.R
 NULL
 
 #' Calculate and add difference-variables for count variables in data.frames

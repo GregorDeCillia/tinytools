@@ -1,4 +1,4 @@
-#' @include vector_manipulation.R composerr.R
+#' @include vector_manipulation.R
 NULL
 
 #' Calculate a date vector
@@ -41,7 +41,7 @@ calc_difftime_years <- function(start, end) {
     end,
     err_h = composerr("Error while calling 'calc_difftime_years()'")
   )
-  lapply(
+  unlist(lapply(
     1:length(start),
     function(i) {
       if (is.na(start[i]) || is.na(end[i]))
@@ -58,7 +58,7 @@ calc_difftime_years <- function(start, end) {
       years <- sum(cumsum_days_inbetween <= days[i])
       years + (days[i] - sum(cumsum_days_inbetween[years]))/days_inbetween[years+1]
     }
-  ) %>% unlist
+  ))
 }
 
 #' Helper function for calculating the time difference in days
@@ -71,12 +71,10 @@ calc_difftime_days_helper <- function(
   len <- length(start)
   if (len != length(end))
     err_h("Arguments 'start' and 'end' must have the same length.")
-  lapply(
+  as.numeric(unlist(lapply(
     1:len,
     function(i) difftime(end[i], start[i], units = "days")
-  )  %>%
-    unlist %>%
-    as.numeric
+  )))
 }
 
 #' Leap year checker
@@ -95,5 +93,5 @@ is_leap_year <- function(x) {
 #' @return The year number vector
 #' @export
 date_2_year <- function(date) {
-  format(date, "%Y") %>% as.numeric
+  as.numeric(format(date, "%Y"))
 }

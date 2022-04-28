@@ -82,15 +82,6 @@ tlsminicran::install_pkgs("tinytools")
 
 ## Advanced R coding
 
-- `restrict_fn_env()`: Restrict the environment of a function. This
-  is very important, when doing functional progamming, since the returned 
-  functions contain the entire environment ancestry tree,
-  which may cause memory issues.
-- `eval_closure()`: A wrapper for `restrict_fn_env()`, which allows you to
-  evaluate an expression inside of a closure, which has the optimal scope.
-  This is important to avoid memory leaks when working with closures
-- `get_call_args()`: Returns a named list holding all argument values of the
-  current function call (including non-overwritten default values).
 - `init_text_builder()`: Initialize a `text_builder`. This is a tool for
   incrementally adding text blocks. One use case can be creating large LaTeX
   code snippets in R.
@@ -98,8 +89,6 @@ tlsminicran::install_pkgs("tinytools")
   for customizing various functions.
 - `get_defaults()`: Return all function arguments including their default
   values for a given function.
-- `composerr()`: Create meaningful error messages by incrementally adding
-  error message parts to an existing error handler.
 
 ## Minor console tools
 

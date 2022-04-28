@@ -7,18 +7,20 @@
 stringify(
   x,
   str_collapse = ", ",
-  quote = TRUE,
+  str_quote = "'",
   str_before = "",
   str_after = "",
   new_line = FALSE
 )
 }
 \arguments{
-\item{x}{A vector}
+\item{x}{An object, which should be turned into a string. Usually an atomic
+object (a vector).}
 
 \item{str_collapse}{A string, used for separating each vector entry.}
 
-\item{quote}{A logical. If set to \code{TRUE}, then each entry of \code{x} is quoted with \verb{'}.}
+\item{str_quote}{A string, holding  the symbol which should be used for quoting
+every entry of \code{x}. Default is \verb{'} which gives the result \code{'entry1'}.}
 
 \item{str_before}{A string placed before each vector entry.}
 
@@ -31,5 +33,7 @@ placed at the end of the resulting string.}
 A string showing the entries of the vector.
 }
 \description{
-Stringify vector
+Turn a vector (e.g. \code{c(1, 2, 3)}) into a string (e.g. \code{"'1', '2', '3'"}).
+This function is particularly useful when creating error messages,
+describing problematic values.
 }

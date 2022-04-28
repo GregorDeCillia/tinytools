@@ -1,4 +1,4 @@
-#' @include function_manipulation.R composerr.R
+#' @include import.R
 NULL
 
 #' Init a `text_builder` object, used for incrementally adding text parts
@@ -66,7 +66,7 @@ init_text_builder <- function(
     err_h("The argument `before` is not a string.")
   if (!is.null(after) && (!is.character(after) || length(after) != 1 || is.na(after)))
     err_h("The argument `after` is not a string.")
-  eval_closure(
+  funky::eval_closure(
     {
       text_stack <- c()
       text_stack_end <- c()

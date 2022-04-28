@@ -16,4 +16,7 @@ A new function, with overwritten defaults
 }
 \description{
 This functions takes a function and modifies its default values.
+TODO: FIX \strong{ERROR}, that calling \code{fn_new(1)} does not work,
+but \code{fn_new(x = 1)} does. This means, that piping does not
+work any more, since it uses unnamed caller args.
 }
