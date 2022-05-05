@@ -9,7 +9,7 @@ create_d_vars_helper(
   n_var,
   order_var = NULL,
   grouping_var = NULL,
-  err_h = composerr("Error while calling 'create_d_vars_helper()'")
+  err_h = composerr("Error while calling 'create_d_vars_helper()': ")
 )
 }
 \arguments{

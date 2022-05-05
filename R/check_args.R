@@ -34,7 +34,7 @@ check_numeric <- function(
   len = NULL,
   obj_name = NULL
 ) {
-  err_call <- composerr("Error while calling `check_numeric()`")
+  err_call <- composerr("Error while calling `check_numeric()`: ")
   validate_composerr(err_h, err_call)
   if (!is.numeric(min_val) || length(min_val) != 1L || is.na(min_val))
     err_call("Argument `min_val` must be a single finite number or `Inf` or `-Inf`.")
@@ -73,9 +73,8 @@ check_numeric <- function(
     obj_name = obj_name
   )
   err_h <- composerr(
-    paste(stringify(obj_name, quote = "`")),
-    err_h,
-    sep_1 = " "
+    paste(stringify(obj_name, quote = "` ")),
+    err_h
   )
   if (!is.null(obj)) {
     id_na <- which(is.na(obj) & !is.nan(obj))
@@ -161,7 +160,7 @@ check_integer <- function(
   len = NULL,
   obj_name = NULL
 ) {
-  err_call <- composerr("Error while calling `check_integer()`")
+  err_call <- composerr("Error while calling `check_integer()`: ")
   validate_composerr(err_h, err_call)
   if (!is.numeric(min_val) || length(min_val) != 1L || is.na(min_val))
     err_call("Argument `min_val` must be a single finite number or `Inf` or `-Inf`.")
@@ -206,9 +205,8 @@ check_integer <- function(
     obj_name = obj_name
   )
   err_h <- composerr(
-    paste(stringify(obj_name, quote = "`")),
-    err_h,
-    sep_1 = " "
+    paste(stringify(obj_name, quote = "` ")),
+    err_h
   )
   if (!is.null(obj)) {
     id_nonint <- suppressWarnings(which(as.integer(obj) != obj))
@@ -240,7 +238,7 @@ check_vector <- function(
   len = NULL,
   obj_name = NULL
 ) {
-  err_call <- composerr("Error while calling `check_vector()`")
+  err_call <- composerr("Error while calling `check_vector()`: ")
   validate_composerr(err_h, err_call)
   if (!is.logical(allow_null) || length(allow_null) != 1L || is.na(allow_null))
     err_call("Argument `allow_null` must be a single non missing boolean value.")
@@ -261,9 +259,8 @@ check_vector <- function(
     obj_name <- deparse(substitute(obj))
   }
   err_h <- composerr(
-    paste(stringify(obj_name, quote = "`")),
-    err_h,
-    sep_1 = " "
+    paste(stringify(obj_name, quote = "` ")),
+    err_h
   )
   if (!isTRUE(allow_null) && is.null(obj)) 
     err_h("is `NULL`, but should be a vector.")
@@ -290,8 +287,8 @@ check_vector <- function(
       if (is.null(element_names))
         err_h("is an unnamed vector although it should be a named vector.")
       if (!is.null(allowed_names)) {
-        err_h_names <- composerr("is a named vector, but has invalid element names", err_h)
-        err_h_names <- composerr("The following vector element names are ", err_h_names, sep_1 = "")
+        err_h_names <- composerr("is a named vector, but has invalid element names: ", err_h)
+        err_h_names <- composerr("The following vector element names are ", err_h_names)
         composerr_halt(err_h_names)
         wrong_names <- unique(element_names[!element_names %in% allowed_names])
         if (length(wrong_names) > 0)
@@ -349,7 +346,7 @@ check_list <- function(
   forbidden_names = NULL,
   obj_name = NULL
 ) {
-  err_call <- composerr("Error while calling `check_list()`")
+  err_call <- composerr("Error while calling `check_list()`: ")
   validate_composerr(err_h, err_call)
   if (!is.logical(allow_null) || length(allow_null) != 1L || is.na(allow_null))
     err_call("Argument `allow_null` must be a single non missing boolean value.")
@@ -410,9 +407,8 @@ check_list <- function(
     obj_name <- deparse(substitute(obj))
   }
   err_h <- composerr(
-    paste(stringify(obj_name, quote = "`")),
-    err_h,
-    sep_1 = " "
+    paste(stringify(obj_name, quote = "` ")),
+    err_h
   )
   if (!isTRUE(allow_null) && is.null(obj))
     err_h("is `NULL`, but should be a list.")
@@ -441,8 +437,8 @@ check_list <- function(
       if (is.null(element_names))
         err_h("is an unnamed list although it should be a named list.")
       if (!is.null(allowed_names)) {
-        err_h_names <- composerr("is a named list, but has invalid list element names", err_h)
-        err_h_names <- composerr("The following list element names are ", err_h_names, sep_1 = "")
+        err_h_names <- composerr("is a named list, but has invalid list element names: ", err_h)
+        err_h_names <- composerr("The following list element names are ", err_h_names)
         composerr_halt(err_h_names)
         wrong_names <- unique(element_names[!element_names %in% allowed_names])
         if (length(wrong_names) > 0)

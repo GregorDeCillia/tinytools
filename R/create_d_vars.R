@@ -44,7 +44,7 @@ create_d_vars <- function(
     n_var = n_var,
     order_var = order_var,
     grouping_var = grouping_var,
-    err_h = composerr("Error while calling 'create_d_vars()'")
+    err_h = composerr("Error while calling 'create_d_vars()': ")
   )
 }
 
@@ -57,7 +57,7 @@ create_d_vars_helper <- function(
   n_var,
   order_var = NULL,
   grouping_var = NULL,
-  err_h = composerr("Error while calling 'create_d_vars_helper()'")
+  err_h = composerr("Error while calling 'create_d_vars_helper()': ")
 ) {
   all_vars <- c(n_var, order_var, grouping_var)
   missing_vars <- all_vars[!all_vars %in% names(x)]
@@ -113,6 +113,6 @@ create_d_vars_all <- function(
     ),
     order_var = order_var,
     grouping_var = grouping_var,
-    err_h = composerr("Error while calling 'create_d_vars_all()'")
+    err_h = composerr("Error while calling 'create_d_vars_all()': ")
   )
 }

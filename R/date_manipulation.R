@@ -29,7 +29,7 @@ calc_difftime_days <- function(start, end) {
   calc_difftime_days_helper(
     start,
     end,
-    err_h = composerr("Error while calling 'calc_difftime_days()'")
+    err_h = composerr("Error while calling 'calc_difftime_days()': ")
   )
 }
 
@@ -39,7 +39,7 @@ calc_difftime_years <- function(start, end) {
   days <- calc_difftime_days_helper(
     start,
     end,
-    err_h = composerr("Error while calling 'calc_difftime_years()'")
+    err_h = composerr("Error while calling 'calc_difftime_years()': ")
   )
   unlist(lapply(
     1:length(start),

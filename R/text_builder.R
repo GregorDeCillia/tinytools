@@ -57,7 +57,7 @@ init_text_builder <- function(
   before = NULL,
   after = NULL
 ) {
-  err_h <- composerr("Error while calling `init_text_builder()`")
+  err_h <- composerr("Error while calling `init_text_builder()`: ")
   if (!is.character(sep) || length(sep) != 1 || is.na(sep))
     err_h("The argument `sep` is not a string.")
   if (!is.null(indent) && (!is.character(indent) || length(indent) != 1 || is.na(indent)))
@@ -72,9 +72,9 @@ init_text_builder <- function(
       text_stack_end <- c()
       list(
         add_text = function(text, indent_level = 0L) {
-          err_h <- composerr("Error while calling `add_text()`")
+          err_h <- composerr("Error while calling `add_text()`: ")
           if (!is.null(text) && !is.character(text))
-            err_h("Argument `text` is not a character vector")
+            err_h("Argument `text` is not a character vector.")
           if (is.null(indent_level))
             indent_level <- 0L
           if (!is.numeric(indent_level) || length(indent_level) != 1 ||
@@ -93,7 +93,7 @@ init_text_builder <- function(
           )
         },
         add_text_end = function(text, indent_level = 0L) {
-          err_h <- composerr("Error while calling `add_text_end()`")
+          err_h <- composerr("Error while calling `add_text_end()`: ")
           if (!is.null(text) && !is.character(text))
             err_h("Argument `text` is not a character object.")
           if (is.null(indent_level))

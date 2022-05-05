@@ -20,7 +20,7 @@ NULL
 #' @return A data.frame holding the parsed data.
 #' @export
 parse_copied_range <- function(x, col_names = NULL, num_cols = NULL, big_mark = ".", dec_mark = ",", col_sep = "\t", row_sep = "\n") {
-  err_h <- composerr("Fehler waehrend des Aufrufs von 'parse_copied_range()'")
+  err_h <- composerr("Fehler waehrend des Aufrufs von 'parse_copied_range()': ")
   if (!is.character(x) || length(x) != 1)
     err_h("Argument 'x' muss ein string sein.")
   x <- strsplit(strsplit(x, row_sep)[[1]], col_sep)
