@@ -1,7 +1,7 @@
 Package: tinytools
 Type: Package
 Title: A Set Of Useful Tools For R Coding
-Version: 2.2.0
+Version: 2.2.1
 Authors@R: c(person("Adrian", "Maldet", email = "adrian.maldet@tirol.gv.at", role = c("aut", "cre")))
 Maintainers@R: c(person("Adrian", "Maldet", email = "adrian.maldet@tirol.gv.at", role = c("aut", "cre")))
 Description: 

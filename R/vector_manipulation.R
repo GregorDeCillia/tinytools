@@ -110,7 +110,7 @@ format_abs <- function(x, signed = FALSE, latex_minus = FALSE, ...) {
         format,
         args = utils::modifyList(
           list(
-            x = round(x),
+            x = round(val),
             nsmall = 0,
             big.mark = ".",
             decimal.mark = ",",
