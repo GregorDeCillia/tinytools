@@ -1,16 +1,21 @@
 ---
-title: "tinytools"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{tinytools}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output:
+  github_document:
+    html_preview: false
 ---
+
+# tinytools
+
+<!-- badges: start -->
+[![GitHub last commit](https://img.shields.io/github/last-commit/a-maldet/tinytools.svg?logo=github)](https://github.com/a-maldet/tinytools/commits/master)
+[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/a-maldet/tinytools.svg?logo=github)](https://github.com/a-maldet/tinytools)
+<!-- badges: end -->
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  eval = FALSE
 )
 ```
 
@@ -24,7 +29,8 @@ functions that may be helpful for your daily R coding problems.
 # Installation
 
 ```{r eval = FALSE}
-tlsminicran::install_pkgs("tinytools")
+# Install development version from GitHub
+devtools::install_github('a-maldet/tinytools', build_opts = NULL)
 ```
 
 # Contained functions

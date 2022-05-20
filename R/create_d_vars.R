@@ -64,7 +64,8 @@ create_d_vars_helper <- function(
   if (length(missing_vars) > 0)
     paste0(
       "The following variables could not be found:\n",
-      stringify(missing_vars, before = "\t", collapse = "\n", new_line = TRUE)
+      stringify(missing_vars, before = "\t", collapse = "\n"),
+      "\n"
     ) %>%
     err_h
   if (!is.null(grouping_var)) {

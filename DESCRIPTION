@@ -1,7 +1,7 @@
 Package: tinytools
 Type: Package
 Title: A Set Of Useful Tools For R Coding
-Version: 2.2.1
+Version: 2.3.0
 Authors@R: c(person("Adrian", "Maldet", email = "adrian.maldet@tirol.gv.at", role = c("aut", "cre")))
 Maintainers@R: c(person("Adrian", "Maldet", email = "adrian.maldet@tirol.gv.at", role = c("aut", "cre")))
 Description: 
@@ -29,14 +29,14 @@ RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Collate: 
     'import.R'
-    'vector_manipulation.R'
-    'check_args.R'
     'console_tools.R'
+    'vector_manipulation.R'
     'create_d_vars.R'
     'date_manipulation.R'
     'lappli.R'
     'list_manipulation.R'
     'set_defaults.R'
     'text_builder.R'
+    'validation.R'
 Depends: 
     R (>= 2.10)
